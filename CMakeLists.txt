@@ -72,9 +72,13 @@ catkin_package(
 
 ## Mark executables and/or libraries for installation
 install(
-  TARGETS 
+  TARGETS
     RosAria
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+
+# Android & Autonomous
+add_executable(AndroidTeleop AndroidTeleop.cpp)
+target_link_libraries(AndroidTeleop ${catkin_LIBRARIES})
