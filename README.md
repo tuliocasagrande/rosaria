@@ -15,7 +15,7 @@ In order to install our version, in the step **1.3** just be sure to clone this 
     git clone https://github.com/tuliocasagrande/rosaria.git
 
 
-You also need to install the [ROS Android Sensors Driver](https://play.google.com/store/apps/details?id=org.ros.android.sensors_driver) [wiki](http://wiki.ros.org/android_sensors_driver) to send the gyroscope information to the robot. Tested with Android 4.3 and 4.4.
+You also need to install the [ROS Android Sensors Driver](https://play.google.com/store/apps/details?id=org.ros.android.sensors_driver) [wiki](http://wiki.ros.org/android_sensors_driver) to send the gyroscope information of your Android device to the robot. Tested with Android 4.3 and 4.4.
 
 If you don't install or if you don't open the Android app, the robot will just assume there isn't manual operation.
 
