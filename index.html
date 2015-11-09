@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Rosaria by tuliocasagrande</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Rosaria</h1>
+        <h2>Pioneer robot with a simple autonomous navigation and teleoperation control using an Android device sending the gyroscope generated information.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/tuliocasagrande/rosaria/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/tuliocasagrande/rosaria/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/tuliocasagrande/rosaria" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>This repo just adds an application to the RosAria package. If you want the latest building and features, please go to the original repository <a href="https://github.com/amor-ros-pkg/rosaria">amor-ros-pkg/rosaria</a>.</p>
+
+<p>The application we created applies a simple autonomous algorithm and a teleoperation control using an Android device sending the gyroscope generated information. The autonomous navigation is naive and just avoids obstacles and follows walls.</p>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+
+<p>First, you need to install the <a href="http://wiki.ros.org/ROS/Installation">Robot Operating System (ROS)</a> and the <a href="http://robots.mobilerobots.com/wiki/MobileSim">MobileSim</a> simulator.</p>
+
+<p>Done that, you need to install the Rosaria package. The instructions to install the original RosAria are available <a href="http://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA">here</a>.</p>
+
+<ul>
+<li>
+<p>In order to install our version, in the step <strong>1.3</strong> just be sure to clone this repository, instead of the amor-ros-pkg/rosaria:</p>
+
+<pre><code>git clone https://github.com/tuliocasagrande/rosaria.git
+</code></pre>
+</li>
+<li>
+<p>If you don't use git, you can simply download this repository and unzip it as:</p>
+
+<pre><code>~/catkin_ws/src/rosaria
+</code></pre>
+</li>
+<li>
+<p>If you already have the RosAria package, you can import our application. However, be aware that Rosaria is under development and our application may stop working in future releases. Just download the <code>AndroidTeleop.cpp</code> and put it under <code>~/catkin_ws/src/rosaria</code>. In addition, you need to append to your <code>~/catkin_ws/src/rosaria/CMakeList.txt</code>:</p>
+
+<pre><code># Android &amp; Autonomous
+add_executable(AndroidTeleop AndroidTeleop.cpp)
+target_link_libraries(AndroidTeleop ${catkin_LIBRARIES})
+</code></pre>
+</li>
+</ul>
+
+<p>Lastly, you need to install the <a href="https://play.google.com/store/apps/details?id=org.ros.android.sensors_driver">ROS Android Sensors Driver</a> <a href="http://wiki.ros.org/android_sensors_driver">wiki</a> to send the gyroscope information of your Android device to the robot. Tested with Android 4.3 and 4.4.</p>
+
+<p>If you don't install or if you don't open the Android app, the robot will just assume there isn't manual operation.</p>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>We only tested with the <a href="http://robots.mobilerobots.com/wiki/MobileSim">MobileSim</a> simulator, but it is expected to work properly in a real robot. You need to open 4 terminals:</p>
+
+<pre><code>$ roscore
+$ MobileSim -m ~/catkin_ws/src/rosaria/Maps/cross.map 
+$ rosrun rosaria RosAria
+$ rosrun rosaria AndroidTeleop
+</code></pre>
+
+<h1>
+<a id="troubleshooting" class="anchor" href="#troubleshooting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Troubleshooting</h1>
+
+<p>If the robot is not responding to the manual operation, check the Android connection:</p>
+
+<pre><code>$ rosnode list
+$ rostopic list
+</code></pre>
+
+<p>Read the Android IMU Sensors (inertial measurement unit):</p>
+
+<pre><code>$ rostopic echo /android/imu
+</code></pre>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
